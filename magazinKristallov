@@ -1,0 +1,31 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Магазин_кристаллов
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello, World!!!");
+            int crystal = 0;
+            int money;
+            Console.WriteLine("Сколько денег у тебя с собой?");
+            money = Convert.ToInt32(Console.ReadLine());
+            int crystalPrice = 14;
+            int maхCrystalQuantity = money / crystalPrice;
+            bool isAbleToBuy;
+            int buyQuatity;
+            Console.WriteLine($"Cегодня цена на кристаллы {crystalPrice} монет за штуку. У тебя хватает на {maхCrystalQuantity}. Сколько возьмешь?");
+            buyQuatity = Convert.ToInt32(Console.ReadLine());
+            isAbleToBuy = money >= buyQuatity * crystalPrice;
+            money -= buyQuatity * crystalPrice * Convert.ToInt32(isAbleToBuy);
+            crystal += buyQuatity * Convert.ToInt32(isAbleToBuy);
+            Console.WriteLine($" Вы купили {crystal} кристалов, и у вас осталось {money} монет");
+            Console.ReadKey();
+        }
+    }
+}
