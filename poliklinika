@@ -1,0 +1,26 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Задание_Поликлиника
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int queneSize;
+            Console.Write("Сколько людей в очереди?");
+            queneSize = Convert.ToInt32(Console.ReadLine());
+            int serveTime = 10;
+            int minutesInHour = 60;
+            int waitingTime = queneSize * serveTime;
+            int waitingTimeHours = waitingTime / minutesInHour;
+            int waitingTimeMinutes = waitingTime % minutesInHour;
+            Console.WriteLine($"Вам осталось ждать не болоее {waitingTimeHours} часов {waitingTimeMinutes} минут");
+            Console.ReadKey();
+
+        }
+    }
+}
