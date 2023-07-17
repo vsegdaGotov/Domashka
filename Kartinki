@@ -1,0 +1,21 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Картинки
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int maxImagesInRow = 3;
+            int imagesQuantity = 52;
+            int completeRaws = imagesQuantity / maxImagesInRow;
+            int extraPictures = imagesQuantity % maxImagesInRow;
+            Console.WriteLine($"{completeRaws} заполненных рядов и {extraPictures} картинка в полседнем ряду");
+            Console.ReadKey();
+        }
+    }
+}
