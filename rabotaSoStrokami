@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Работа_со_строками
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string heroName;
+            string petName;
+            int money;
+            int maхPetFoodQuantity;
+            int petFoodPrice = 14;
+            Console.WriteLine("Приветствую в нашем геройском магазине. Как звать тебя Герой?");
+            heroName = Console.ReadLine();
+            Console.WriteLine("А твоего питомца?");
+            petName = Console.ReadLine();
+            Console.WriteLine("Сколько денег у тебя с собой?");
+            money = Convert.ToInt32(Console.ReadLine());
+            maхPetFoodQuantity = money / petFoodPrice;
+            Console.WriteLine($"{heroName} сегодня цена на еду для питомца {petFoodPrice} монет. {petName} максимум может съесть {maхPetFoodQuantity}.");
+            Console.ReadKey();
+        }
+    }
+}
