@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Контроль_выхода
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string exitCommand = "exit";
+            string userInput;
+
+            while (true)
+            {
+                Console.WriteLine("Введите команду. Для выхода из программы введите " + exitCommand);
+                userInput = Console.ReadLine();
+                if(userInput == exitCommand)
+                {
+                    Console.WriteLine($"Вы ввели команду {exitCommand}. Программа закрывается;");
+                    break;
+                }
+                else 
+                {
+                    Console.WriteLine("Неизвестная команнда. Введите другую команду:");
+                    userInput = Console.ReadLine();
+                }
+            }
+            Console.ReadKey();
+        }
+    }
+}
