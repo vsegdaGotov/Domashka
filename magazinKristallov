@@ -11,7 +11,7 @@ namespace Магазин_кристаллов
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!!!");
-            int crystal = 0;
+            int crystalQuantity = 0;
             int money;
             Console.WriteLine("Сколько денег у тебя с собой?");
             money = Convert.ToInt32(Console.ReadLine());
