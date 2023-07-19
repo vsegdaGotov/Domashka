@@ -16,9 +16,7 @@ namespace Перестановка_местами_значений
             Console.WriteLine($"Ваше имя {name}, а фамилия {surname}");
             string temporaryStorage;
             temporaryStorage = name;
-            //Console.WriteLine(temporaryStorage);
             name = surname;
-            //Console.WriteLine(name);
             surname = temporaryStorage;
             Console.WriteLine($"Ваше имя {name}, а фамилия {surname}");
             Console.ReadKey();
