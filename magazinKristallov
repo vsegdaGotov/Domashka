@@ -23,8 +23,8 @@ namespace Магазин_кристаллов
             buyQuatity = Convert.ToInt32(Console.ReadLine());
             isAbleToBuy = money >= buyQuatity * crystalPrice;
             money -= buyQuatity * crystalPrice * Convert.ToInt32(isAbleToBuy);
-            crystal += buyQuatity * Convert.ToInt32(isAbleToBuy);
-            Console.WriteLine($" Вы купили {crystal} кристалов, и у вас осталось {money} монет");
+            crystalQuantity += buyQuatity * Convert.ToInt32(isAbleToBuy);
+            Console.WriteLine($" Вы купили {crystalQuantity} кристалов, и у вас осталось {money} монет");
             Console.ReadKey();
         }
     }
