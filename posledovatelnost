@@ -12,7 +12,8 @@ namespace Последовательность
         {
             int progressionValue = 5;
             int progressionStep = 7;
-            while (progressionValue < 100)
+            int maxValue = 99;
+            while (progressionValue < maxValue)
             {
                 Console.WriteLine(progressionValue);
                 progressionValue += progressionStep;
