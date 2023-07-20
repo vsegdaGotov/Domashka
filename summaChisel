@@ -10,21 +10,22 @@ namespace Сумма_чисел
     {
         static void Main(string[] args)
         {
-            Random rand = new Random();
-            int number = rand.Next(1, 100);
-            Console.WriteLine(number);
+            Random random = new Random();
+            int randomNumber = random.Next(1, 100);
+            Console.WriteLine(randomNumber);
             int sum = 0;
+            int three = 3;
+            int five = 5;
 
-            while (number >= 3)
-            {
-                if (number % 3 == 0 || number % 5 == 0)
-                {
-                    sum += number;
-                    Console.WriteLine(number);
+            while (randomNumber >= three)
+            {   
+                if (randomNumber % three == 0 || randomNumber % five == 0)
+                {   sum += randomNumber;
+                    Console.WriteLine(randomNumber);
                 }
-                number--;
+                randomNumber--;
             }
-                
+
             Console.WriteLine(sum);
             Console.ReadKey();
         }
