@@ -1,0 +1,189 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Конвертер_валют
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Random random = new Random();
+            float walletRub = random.Next(0, 100000);
+            float walletUsd = random.Next(0, 10000);
+            float walletEur = random.Next(0, 10000);
+            float exchangeRateRubUsd12 = 0.010964f;
+            float exchangeRateUsdRub21 = 91.2f;
+            float exchangeRateRubEur13 = 0.009761f;
+            float exchangeRateEurRub31 = 102.44f;
+            float exchangeRateUsdEur23 = 0.89029f;
+            float exchangeRateEurUsd32 = 1.12f;
+            float exchangeRateForIdiots = 1.1f;
+            float desiredExchangeAmmount;
+            string firstCurrencyInput;
+            string secondCurrencyInput;
+            string desiredOperation;
+            bool isProceding = true;
+
+            while (isProceding == true)
+            {
+                Console.WriteLine("Добро пожаловать в обменник!");
+                Console.WriteLine($"Ваш баланс: {walletRub} рублей, {walletUsd} долларов, {walletEur} евро."); ;
+                Console.WriteLine();
+                Console.WriteLine("Какую валюту желаете приобрести?");
+                Console.WriteLine("1 - Рубли");
+                Console.WriteLine("2 - Доллары");
+                Console.WriteLine("3 - Евро");
+                Console.WriteLine("exit - для выхода из обменника ");
+                firstCurrencyInput = Console.ReadLine();
+                //Console.WriteLine(desiredOperation);
+
+                if (firstCurrencyInput == "exit")
+                {
+                    Console.WriteLine("Доброго дня!!!");
+                    isProceding = false;
+                }
+                else if (firstCurrencyInput == "1" || firstCurrencyInput == "2" || firstCurrencyInput == "3")
+                {
+                    Console.WriteLine("В обмен на какую валюту?");
+                    Console.WriteLine("1 - Рубли");
+                    Console.WriteLine("2 - Доллары");
+                    Console.WriteLine("3 - Евро");
+                    secondCurrencyInput =  Console.ReadLine();
+
+                    if (secondCurrencyInput == "1"|| secondCurrencyInput == "2"|| secondCurrencyInput == "3")
+                    {
+                        desiredOperation = firstCurrencyInput+secondCurrencyInput;
+                        Console.Write("Какое количество вы желаете приобрести:");
+                        desiredExchangeAmmount = Convert.ToSingle(Console.ReadLine());
+
+                        switch (desiredOperation) 
+                        {
+                            case "11":
+                                if (walletRub - desiredExchangeAmmount >= 0)
+                                {
+                                    walletRub += desiredExchangeAmmount;
+                                    walletRub -= desiredExchangeAmmount * exchangeRateForIdiots;
+                                    Console.WriteLine($"Вы приобрели {desiredExchangeAmmount} рублей за {desiredExchangeAmmount*exchangeRateForIdiots} рублей");
+                                }
+                                else 
+                                {
+                                    Console.WriteLine("Недостаточно средств");
+                                }
+                            break;
+                            case "21":
+                                if (walletRub - desiredExchangeAmmount*exchangeRateUsdRub21 >= 0)
+                                {
+                                    walletUsd += desiredExchangeAmmount;
+                                    walletRub -= desiredExchangeAmmount * exchangeRateUsdRub21;
+                                    Console.WriteLine($"Вы приобрели {desiredExchangeAmmount} долларов за {desiredExchangeAmmount * exchangeRateUsdRub21} рублей");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Недостаточно средств");
+                                }
+                                break;
+                            case "31":
+                                if (walletRub - desiredExchangeAmmount * exchangeRateEurRub31 >= 0)
+                                {
+                                    walletEur += desiredExchangeAmmount;
+                                    walletRub -= desiredExchangeAmmount * exchangeRateEurRub31;
+                                    Console.WriteLine($"Вы приобрели {desiredExchangeAmmount} евро за {desiredExchangeAmmount * exchangeRateEurRub31} рублей");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Недостаточно средств");
+                                }
+                                break;
+                            case "13":
+                                if (walletEur - desiredExchangeAmmount * exchangeRateRubEur13 >= 0)
+                                {
+                                    walletRub += desiredExchangeAmmount;
+                                    walletUsd -= desiredExchangeAmmount * exchangeRateRubEur13;
+                                    Console.WriteLine($"Вы приобрели {desiredExchangeAmmount} рублей за {desiredExchangeAmmount * exchangeRateRubEur13} евро");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Недостаточно средств");
+                                }
+                                break;
+                            case "23":
+                                if (walletEur - desiredExchangeAmmount * exchangeRateUsdEur23 >= 0)
+                                {
+                                    walletUsd += desiredExchangeAmmount;
+                                    walletUsd -= desiredExchangeAmmount * exchangeRateUsdEur23;
+                                    Console.WriteLine($"Вы приобрели {desiredExchangeAmmount} долларов за {desiredExchangeAmmount * exchangeRateUsdEur23} евро");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Недостаточно средств");
+                                }
+                                break;
+                            case "33":
+                                if (walletEur - desiredExchangeAmmount * exchangeRateForIdiots >= 0)
+                                {
+                                    walletEur += desiredExchangeAmmount;
+                                    walletUsd -= desiredExchangeAmmount * exchangeRateForIdiots;
+                                    Console.WriteLine($"Вы приобрели {desiredExchangeAmmount} евро за {desiredExchangeAmmount * exchangeRateForIdiots} евро");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Недостаточно средств");
+                                }
+                                break;
+                            case "12":
+                                if (walletUsd - desiredExchangeAmmount * exchangeRateRubUsd12 >= 0)
+                                {
+                                    walletRub += desiredExchangeAmmount;
+                                    walletUsd -= desiredExchangeAmmount * exchangeRateRubUsd12;
+                                    Console.WriteLine($"Вы приобрели {desiredExchangeAmmount} рублей за {desiredExchangeAmmount * exchangeRateRubUsd12} долларов");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Недостаточно средств");
+                                }
+                                break;
+                            case "22":
+                                if (walletUsd - desiredExchangeAmmount * exchangeRateForIdiots >= 0)
+                                {
+                                    walletUsd += desiredExchangeAmmount;
+                                    walletUsd -= desiredExchangeAmmount * exchangeRateForIdiots;
+                                    Console.WriteLine($"Вы приобрели {desiredExchangeAmmount} долларов за {desiredExchangeAmmount * exchangeRateForIdiots} долларов");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Недостаточно средств");
+                                }
+                                break;
+                            case "32":
+                                if (walletEur - desiredExchangeAmmount * exchangeRateEurUsd32 >= 0)
+                                {
+                                    walletEur += desiredExchangeAmmount;
+                                    walletUsd -= desiredExchangeAmmount * exchangeRateEurUsd32;
+                                    Console.WriteLine($"Вы приобрели {desiredExchangeAmmount} евро за {desiredExchangeAmmount * exchangeRateEurUsd32} долларов");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Недостаточно средств");
+                                }
+                                break;
+                        }
+                        Console.WriteLine();
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Вы мудак - 2");
+                    }
+                
+                }
+                else
+                {
+                    Console.WriteLine("Вы мудак");
+                }
+            }   
+        }
+    }
+}
