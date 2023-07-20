@@ -12,9 +12,7 @@ namespace Контроль_выхода
         static void Main(string[] args)
         {
             string exitCommand = "exit";
-            string userInput;
-            Console.WriteLine("Введите команду. Для выхода из программы введите " + exitCommand);
-            userInput = Console.ReadLine();
+            string userInput = "";
             bool stopProceeding = exitCommand == userInput;
 
             while (stopProceeding == false)
