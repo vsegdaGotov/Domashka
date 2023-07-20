@@ -13,21 +13,24 @@ namespace Контроль_выхода
         {
             string exitCommand = "exit";
             string userInput;
+            Console.WriteLine("Введите команду. Для выхода из программы введите " + exitCommand);
+            userInput = Console.ReadLine();
+            bool stopProceeding = exitCommand == userInput;
 
-            while (true)
+            while (stopProceeding == false)
             {
                 Console.WriteLine("Введите команду. Для выхода из программы введите " + exitCommand);
                 userInput = Console.ReadLine();
                 if(userInput == exitCommand)
                 {
                     Console.WriteLine($"Вы ввели команду {exitCommand}. Программа закрывается;");
-                    break;
                 }
-                else 
+                else
                 {
                     Console.WriteLine("Неизвестная команнда. Введите другую команду:");
                     userInput = Console.ReadLine();
                 }
+                stopProceeding = exitCommand == userInput;
             }
             Console.ReadKey();
         }
