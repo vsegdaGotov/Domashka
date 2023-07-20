@@ -14,15 +14,15 @@ namespace Сумма_чисел
             int number = rand.Next(1, 100);
             Console.WriteLine(number);
             int sum = 0;
-            int x = number - 1;
 
-            while (x-- > 1)
+            while (number >= 3)
             {
-                if (x % 3 == 0 || x % 5 == 0)
+                if (number % 3 == 0 || number % 5 == 0)
                 {
-                    sum += x;
-                    Console.WriteLine(x);
+                    sum += number;
+                    Console.WriteLine(number);
                 }
+                number--;
             }
                 
             Console.WriteLine(sum);
