@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Кратные_числа
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int limitMin = 1;
+            int limitMax = 27;
+            Console.Write($"Введите число от {limitMin} до {limitMax}: ");
+            int n = Convert.ToInt32(Console.ReadLine());
+            int count = 0;
+
+            if (n > limitMax || n < limitMin)
+            {
+                Console.WriteLine("Ошибка ввода. Программа остановленаю");
+                Console.ReadKey();
+            }
+            else
+            {
+                for (int i = n; i <= limitMax; i += n)
+                {
+                    count++;
+                }
+                Console.WriteLine($" Ответ: {count}");
+                Console.ReadKey();
+            }
+        }
+    }
+}
