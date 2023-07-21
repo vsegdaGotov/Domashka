@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Степень_двойки
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Random random = new Random();
+            int limitMin = 1;
+            int limitMax = 999999999;
+            int number = random.Next(limitMin, limitMax);
+            Console.WriteLine(number);
+            int count = 4;
+            int answer = 2;
+            int multiplier = 2;
+
+            while (count < number)
+            {
+                answer++;
+                count *= multiplier;
+            }
+
+            Console.WriteLine($"Ответ: 2 в степени {answer}");
+            Console.ReadKey();
+        }
+    }
+}
