@@ -175,13 +175,13 @@ namespace Конвертер_валют
                     }
                     else
                     {
-                        Console.WriteLine("Вы мудак - 2");
+                        Console.WriteLine("Нейзвестная команда. Попробуйте сначала.");
                     }
                 
                 }
                 else
                 {
-                    Console.WriteLine("Вы мудак");
+                    Console.WriteLine("Нейзвестная команда. Попробуйте сначала.");
                 }
             }   
         }
