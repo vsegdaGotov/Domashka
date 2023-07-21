@@ -10,20 +10,13 @@ namespace Последовательность
     {
         static void Main(string[] args)
         {
-            int progressionValue = 5;
+            int progressionStart = 5;
             int progressionStep = 7;
-            int maxValue = 96;
+            int progressionEnd = 96;
 
-            //while (progressionValue <= maxValue)
-            //{
-            //    Console.WriteLine(progressionValue);
-            //    progressionValue += progressionStep;
-            //}
-
-            for (int i = 0; i <= maxValue / progressionStep; i++)
+            for (int i = progressionStart; i <= progressionEnd; i += progressionStep)
             {
-                Console.WriteLine(progressionValue);
-                progressionValue += progressionStep;
+                Console.WriteLine(i);
             }
 
             Console.ReadKey();
