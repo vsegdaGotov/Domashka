@@ -11,22 +11,47 @@ namespace Сумма_чисел
         static void Main(string[] args)
         {
             Random random = new Random();
-            int randomNumber = random.Next(1, 100);
+            int randomStart = 1;
+            int randomStop = 100;
+            int randomNumber = random.Next(randomStart, randomStop);
             Console.WriteLine(randomNumber);
-            int sum = 0;
-            int three = 3;
-            int five = 5;
+            int sumWhile = 0;
+            int sumFor = 0;
+            int firstCondition = 3;
+            int secondCondition = 5;
 
-            while (randomNumber >= three)
-            {   
-                if (randomNumber % three == 0 || randomNumber % five == 0)
-                {   sum += randomNumber;
-                    Console.WriteLine(randomNumber);
+            for (int i =firstCondition; i <= randomNumber; i+=firstCondition)
+                {
+                if (i % secondCondition == 0)
+                {
+                    continue;
                 }
+                else
+                {
+                    sumFor += i;
+                }
+            }
+
+            for (int q = secondCondition; q <= randomNumber; q += secondCondition)
+            {
+                sumFor += q;
+            }
+
+            Console.WriteLine(sumFor);
+            Console.ReadKey();
+
+
+            while (randomNumber >= firstCondition)
+            {   
+                if (randomNumber % firstCondition == 0 || randomNumber % secondCondition == 0)
+                {   
+                    sumWhile += randomNumber;
+                }
+
                 randomNumber--;
             }
 
-            Console.WriteLine(sum);
+            Console.WriteLine(sumWhile);
             Console.ReadKey();
         }
     }
