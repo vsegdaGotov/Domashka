@@ -13,19 +13,20 @@ namespace Степень_двойки
             Random random = new Random();
             int limitMin = 1;
             int limitMax = 999999999;
-            int number = random.Next(limitMin, limitMax);
+            //int number = random.Next(limitMin, limitMax);
+            int number = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine(number);
-            int count = 4;
-            int answer = 2;
+            int count = 2;
+            int answer = 1;
             int multiplier = 2;
 
-            while (count < number)
+            while (count <= number)
             {
                 answer++;
                 count *= multiplier;
             }
 
-            Console.WriteLine($"Ответ: 2 в степени {answer}");
+            Console.WriteLine($"Ответ: {multiplier} в степени {answer}");
             Console.ReadKey();
         }
     }
