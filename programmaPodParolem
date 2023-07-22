@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Программа_под_паролем
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            const string password = "сирруш";
+
+            int tries = 3;
+            int lastTry = 1;
+            string userInput;
+
+            for (int i = tries; i >= lastTry; i--)
+            {
+                Console.Write("Введите пароль: ");
+                userInput = Console.ReadLine();
+                int nextTry = i - 1;
+
+                if (userInput == password)
+                {
+                    Console.WriteLine("a smell of petroleum prevails throughout");
+                    i = lastTry;
+                }
+
+                else if (i == lastTry)
+                {
+                    Console.WriteLine("Неверный пароль. Программа завершена");
+                }
+
+                else
+                {
+                    Console.WriteLine($"Неверный пароль. Осталось попыток: {nextTry} ");
+                }
+            }
+
+            Console.ReadKey();
+        }
+    }
+}
