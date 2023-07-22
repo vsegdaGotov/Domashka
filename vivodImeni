@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml;
+
+namespace Вывод_имени
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            const string Symbol = "#";
+            
+            string userInput = Console.ReadLine();
+            string someString = Symbol + (userInput) + Symbol;
+            int stringLenth = someString.Length;
+
+            for (int i = 0; i < stringLenth; i++)
+            {
+                Console.Write(Symbol);
+            }
+
+            Console.WriteLine();
+            Console.WriteLine(someString);
+
+            for (int i = 0; i < stringLenth; i++)
+            {
+                Console.Write(Symbol);
+                //Console.WriteLine(i);
+            }
+
+            Console.ReadKey();
+        }
+    }
+}
