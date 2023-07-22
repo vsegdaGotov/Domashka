@@ -13,88 +13,91 @@ namespace Консольное_меню
         static void Main(string[] args)
         {
             Random random = new Random();
+            int minRandomHealth=1;
+            int maxRandomHealth=1000;
+            int minRandomAttack=15;
+            int maxRandomAttack=50;
             string exitCommand = "й";
-            string changeNameCommand = "1";
-            string changeClassCommand = "2";
-            string changeStatsCommand = "3";
-            string testFightCommand = "4";
+            string firstMenuCommand = "1";
+            string secondMenuCommand = "2";
+            string thirdMenuCommand = "3";
+            string fourthMenuCommand = "4";
             string classWarrior = "воин";
             string classIddqd = "ночной эльф разбойник";
             string noClass = "крестьянин";
-            string pLayerName= "noname";
+            string playerName= "noname";
             string playerClass = noClass;
             int playerHealth=1;
             int playerAttack=0;
-            bool gameRunning = true;
-            bool menuRunning = true;
-            int enemyHealth = 500;
-            int enemyAttack = 30;
+            int noHealth = 0;
+            bool isGameRunning = true;
+            bool isMenuCicleRunning = true;
             string menuChoice;
 
             Console.WriteLine("Добро пожаловать в меню настройки персонажа.");
             Console.WriteLine("Нажмите любую кнопку для продолжения.");
             Console.ReadKey();
 
-            while (gameRunning == true)
+            while (isGameRunning == true)
             {
                 Console.WriteLine();
-                Console.WriteLine("Имя персонажа: " + (pLayerName));
+                Console.WriteLine("Имя персонажа: " + (playerName));
                 Console.WriteLine("Класс персонажа:" + (playerClass));
                 Console.WriteLine("HP персонажа:" + (playerHealth));
                 Console.WriteLine("Атака персонажа: " + (playerAttack));
                 Console.WriteLine();
                 Console.WriteLine("Выберите действие");
-                Console.WriteLine("1 - Сменить имя");
-                Console.WriteLine("2 - сменить класс");
-                Console.WriteLine("3 - настроить статы");
-                Console.WriteLine("4 - Провести тестовый бой");
+                Console.WriteLine(firstMenuCommand + " - сменить имя персонажа");
+                Console.WriteLine(secondMenuCommand + " - сменить класс персонажа");
+                Console.WriteLine(thirdMenuCommand + " - настроить статы персонажа");
+                Console.WriteLine(fourthMenuCommand + " - провести тестовый бой");
                 Console.WriteLine($"наберите {exitCommand} для выхода");
                 menuChoice = Console.ReadLine();
                 Console.WriteLine();
 
                 if (menuChoice == exitCommand)
                 {
-                    gameRunning = false;
+                    isGameRunning = false;
                 }
-                else if (menuChoice == changeNameCommand)
+                else if (menuChoice == firstMenuCommand)
                 {
                     Console.Write("Введите новое имя: ");
-                    pLayerName = Console.ReadLine();
+                    playerName = Console.ReadLine();
                     Console.WriteLine();
                 }
-                else if (menuChoice == changeClassCommand)
+                else if (menuChoice == secondMenuCommand)
                 {
-                    while (menuRunning == true)
+                    while (isMenuCicleRunning == true)
                     {
                         Console.WriteLine($"Текущий класс: {playerClass} Выберите класс персонажа: ");
-                        Console.WriteLine("1 - " + (classWarrior));
-                        Console.WriteLine("2 - " + (classIddqd));
+                        Console.WriteLine(firstMenuCommand + " - " + (classWarrior));
+                        Console.WriteLine(secondMenuCommand + " - " + (classIddqd));
                         Console.WriteLine($"наберите {exitCommand} для выхода");
                         menuChoice = Console.ReadLine();
                         Console.WriteLine();
 
                         if (menuChoice == exitCommand)
                         {
-                            menuRunning = false;
+                            isMenuCicleRunning = false;
                         }
-                        else if (menuChoice == "1")
+                        else if (menuChoice == firstMenuCommand)
                         {
                             playerClass = classWarrior;
                         }
-                        else if (menuChoice == "2")
+                        else if (menuChoice == secondMenuCommand)
                         {
                             playerClass = classIddqd;
                         }
                         else
                         {
-                            Console.WriteLine("Нейзвестная командаю Попробуйте заново");
+                            Console.WriteLine("Нейзвестная команда. Попробуйте заново");
                         }
                     }
-                    menuRunning = true;
+                    isMenuCicleRunning = true;
                 }
-                else if (menuChoice == changeStatsCommand)
+                else if (menuChoice == thirdMenuCommand)
                 {
-                    while (menuRunning == true)
+                    while (isMenuCicleRunning == true)
                     {
                         Console.WriteLine("HP персонажа:" + (playerHealth));
                         Console.WriteLine("Атака персонажа: " + (playerAttack));
@@ -104,19 +107,25 @@ namespace Консольное_меню
 
                         if (menuChoice == exitCommand)
                         {
-                            menuRunning = false;
+                            isMenuCicleRunning = false;
                         }
                         else
                         {
-                            playerHealth = random.Next(1,1000);
-                            playerAttack = random.Next(20, 50);
+                            playerHealth = random.Next(minRandomHealth,maxRandomHealth);
+                            playerAttack = random.Next(minRandomAttack, maxRandomAttack);
                         }
                     }
-                    menuRunning = true;
+                    isMenuCicleRunning = true;
                 }
-                else if (menuChoice == testFightCommand)
+                else if (menuChoice == fourthMenuCommand)
                 {
-                    Console.WriteLine("Здесь тестовый бой");
+                    int testFightPlayerHP = playerHealth;
+                    int testFightPlayerAttack = playerAttack;
+                    int enemyHealth = random.Next(minRandomHealth,maxRandomHealth);
+                    int enemyAttack = random.Next(minRandomAttack,maxRandomAttack);
+                    int round = 1;
+                    Console.WriteLine("Да будет БИТВА!!!");
+                    Console.WriteLine();
                     Console.WriteLine("HP персонажа:" + (playerHealth));
                     Console.WriteLine("Атака персонажа: " + (playerAttack));
                     Console.WriteLine();
@@ -124,51 +133,46 @@ namespace Консольное_меню
                     Console.WriteLine("Атака врага " + (enemyAttack));
                     Console.WriteLine("Нажмите любую кнопку");
                     Console.ReadKey();
-                    int testPlayerHP = playerHealth;
-                    int testPlayerAttack = playerAttack;
-                    int testEnemyHP = enemyHealth;
-                    int testEnemyAttack = enemyAttack;
-                    int round = 1;
 
                     if (playerClass == classIddqd)
                     {
-                        Console.WriteLine($"{classIddqd} подкрадывается к врагу и перерезает ему горло. {pLayerName} побеждает.");
+                        Console.WriteLine($"{classIddqd} подкрадывается к врагу и перерезает ему горло. {playerName} побеждает.");
                     }
                     else if (playerClass==noClass)
                     { 
-                        Console.WriteLine($"{pLayerName} обычный {noClass} и не умеет сражаться. Легкая победа врага");
+                        Console.WriteLine($"{playerName} обычный {noClass} и не умеет сражаться. Легкая победа врага.");
                     }
                     else
                     {
-                        while (testEnemyHP >= 0 && testPlayerHP >= 0)
+                        while (enemyHealth > noHealth && testFightPlayerHP > noHealth)
                         {
-                            testPlayerHP -= testEnemyAttack;
-                            testEnemyHP -= testPlayerAttack;
+                            testFightPlayerHP -= enemyAttack;
+                            enemyHealth -= testFightPlayerAttack;
                             Console.WriteLine(round + "Раунд");
-                            Console.WriteLine($" У {pLayerName} осталось {testPlayerHP} единиц здоровья");
-                            Console.WriteLine($" У врага осталось {testEnemyHP} единиц здоровья");
+                            Console.WriteLine($" У {playerName} осталось {testFightPlayerHP} единиц здоровья");
+                            Console.WriteLine($" У врага осталось {enemyHealth} единиц здоровья");
                             Console.WriteLine();
                             Console.ReadKey();
                             round++;
                         }
 
-                        if (testEnemyHP <= 0 && testPlayerHP <= 0)
+                        if (enemyHealth <= noHealth && testFightPlayerHP <= noHealth)
                         {
                             Console.WriteLine("Ничья");
                         }
-                        else if (testPlayerHP <= 0)
+                        else if (testFightPlayerHP <= noHealth)
                         {
                             Console.WriteLine("Враг победил");
                         }
                         else
                         {
-                            Console.WriteLine($"Победа {pLayerName}");
+                            Console.WriteLine($"Победа {playerName}");
                         }
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Нейзвестная командаю Попробуйте заново");
+                    Console.WriteLine("Нейзвестная команда. Попробуйте заново");
                 }
             }
         }
