@@ -28,8 +28,7 @@ namespace Кратные_числа
             {
                 for (int i = numberN; i <= limitMax; i += numberN)
 
-                    if (i < limitMin) { }
-                    else
+                    if (i >= limitMin)
                     {
                         count++;
                     }
