@@ -10,8 +10,8 @@ namespace Программа_под_паролем
     {
         static void Main(string[] args)
         {
-            const string password = "сирруш";
-
+            string password = "сирруш";
+            string secret = "a smell of petroleum prevails throughout";
             int tries = 3;
             int lastTry = 1;
             string userInput;
@@ -20,22 +20,20 @@ namespace Программа_под_паролем
             {
                 Console.Write("Введите пароль: ");
                 userInput = Console.ReadLine();
-                int nextTry = i - 1;
+                int triesLeft = i - 1;
 
                 if (userInput == password)
                 {
-                    Console.WriteLine("a smell of petroleum prevails throughout");
+                    Console.WriteLine(secret);
                     i = lastTry;
                 }
-
                 else if (i == lastTry)
                 {
                     Console.WriteLine("Неверный пароль. Программа завершена");
                 }
-
                 else
                 {
-                    Console.WriteLine($"Неверный пароль. Осталось попыток: {nextTry} ");
+                    Console.WriteLine($"Неверный пароль. Осталось попыток: {triesLeft} ");
                 }
             }
 
