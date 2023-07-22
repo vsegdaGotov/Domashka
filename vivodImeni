@@ -12,7 +12,8 @@ namespace Вывод_имени
         static void Main(string[] args)
         {
             const string Symbol = "#";
-            
+
+            Console.Write("Введите имя: ");
             string userInput = Console.ReadLine();
             string someString = Symbol + (userInput) + Symbol;
             int stringLenth = someString.Length;
@@ -28,10 +29,10 @@ namespace Вывод_имени
             for (int i = 0; i < stringLenth; i++)
             {
                 Console.Write(Symbol);
-                //Console.WriteLine(i);
             }
 
             Console.ReadKey();
         }
     }
 }
+
