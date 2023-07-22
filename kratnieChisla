@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,23 +11,33 @@ namespace Кратные_числа
     {
         static void Main(string[] args)
         {
-            int limitMin = 1;
-            int limitMax = 27;
-            Console.Write($"Введите число от {limitMin} до {limitMax}: ");
-            int n = Convert.ToInt32(Console.ReadLine());
+            int limitMax = 999;
+            int limitMin = 100;
+            int numberNMin = 1;
+            int numberNMax = 28;
+            Console.Write($"Введите число от {numberNMin} до {numberNMax-1}: ");
+            int numberN = Convert.ToInt32(Console.ReadLine());
             int count = 0;
 
-            if (n > limitMax || n < limitMin)
+            if (numberN >= numberNMax || numberN < numberNMin)
             {
                 Console.WriteLine("Ошибка ввода. Программа остановленаю");
                 Console.ReadKey();
             }
             else
             {
-                for (int i = n; i <= limitMax; i += n)
-                {
-                    count++;
-                }
+                for (int i = numberN; i <= limitMax; i += numberN)
+
+                    if (i < limitMin)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        Console.WriteLine(i);
+                        count++;
+                    }
+
                 Console.WriteLine($" Ответ: {count}");
                 Console.ReadKey();
             }
