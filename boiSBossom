@@ -1,0 +1,248 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Бой_с_боссом
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Random random = new Random();
+            //Перемнные боя
+            bool isFighting = true;
+            int round = 1;
+            int endOfCounts = 0;
+            int standartMultiplier = 1;
+            int playerHealth = 1000;
+            int bossHealth = 10000;
+            int bossAttack;
+            int bossAttackMax = 150;
+            int bossAtteckMin = 75;
+            int noHealth = 0;
+            //Переменные первого скила
+            string playerFirstSkill = "Атака ножами";
+            int playerFirstSkillDamage = 100;
+            //Переменные второго скила
+            string playerSecondSkill = "Рванная рана";
+            bool isBleeding = false;
+            int bleedingDuration = 3;
+            int bleedingCount = 0;
+            int bleedingDamage = 500;
+            //Переменные третьего скила
+            string playerThirdSkill = "Уход в тень";
+            int thirdSkillHealing = 250;
+            bool isInvisible = false;
+            int invisibilityMultiplier = 5;
+            int invisibilityDuration = 2;
+            int invisibilityCount = 0;
+            int invisibilityCooldown = 5;
+            int invisibilityCooldowncount=0;
+            int isInvisibleMultiplier=1;
+            //Переменные четвертого скила
+            string playerFourthtSkill = "Неистовство";
+            int playerSecondSkillDamage = 100;
+            int frenzyAgressionLevelNeeded = 5;
+            int frenzyDuration = 3;
+            int agressionLevel = 0;
+            int frenzyCount = 0;
+            int frenzyMultplier = 5;
+            bool isFrenzy = false;
+            int isFrenzyMultiplier = 1;
+            //Переменные меню
+            string firstMenuCommand = "1";
+            string secondMenuCommand = "2";
+            string thirdMenuCommand = "3";
+            string fourthMenuCommand = "4";
+            string menuChoice;
+            string firstSkillDescribtion = playerFirstSkill + " наносит " + playerFirstSkillDamage + " единиц урона. Атака из невидимости нанесет в " + invisibilityMultiplier + " больше урона.";
+            string secondSkillDescribtion = playerSecondSkill + " наносит " + playerSecondSkillDamage + " единиц урона и накладывает эффект кровотечения на " + bleedingDuration + " раунда." + playerSecondSkill + " недоступна пока не остановится кроветечение.";
+            string thirdSkillDescribtion = playerThirdSkill + " скрывает игрока от врага на " + invisibilityDuration + " (враг не может наносить удары по игроку), и восстанавливает " + thirdSkillHealing + " герою едениц здоровья";
+            string fourthSkillDescribtion = playerFourthtSkill + " на " + frenzyDuration + " раунда повышает урон в " + frenzyMultplier + " раз. Каждый раунд игрок повышает уровень ярости на единицу, при достижении " + frenzyAgressionLevelNeeded + " уровня, игрок может использовать " + playerFourthtSkill; ;
+
+            while (isFighting == true)
+            {
+                Console.WriteLine(round + " раунд");
+                Console.WriteLine($"У игрока {playerHealth} ХП. Уровень ярости: {agressionLevel}");
+
+                if (isInvisible == true) 
+                {
+                    Console.WriteLine("Игрок в невидимости. Ходов осталось " + invisibilityCount);
+                }
+                
+                if (invisibilityCooldowncount > endOfCounts)
+                {
+                    Console.WriteLine($"{playerThirdSkill} cooldown {invisibilityCooldowncount}");
+                }
+                
+                if (isFrenzy == true)
+                {
+                    Console.WriteLine("Игрок в неистовстве. Ходов осталось " + frenzyCount);
+                }
+                
+                Console.WriteLine();
+                Console.WriteLine($"У босса {bossHealth} ХП");
+
+                if (isBleeding == true) 
+                {
+                    Console.WriteLine("Кровотечение. Ходов осталось " + bleedingCount);
+                }
+
+                Console.WriteLine();
+                Console.WriteLine("Выберите действие");
+                Console.WriteLine(firstMenuCommand +" "+ playerFirstSkill);
+                Console.WriteLine(secondMenuCommand + " " + playerSecondSkill);
+                Console.WriteLine(thirdMenuCommand + " " + playerThirdSkill);
+                Console.WriteLine(fourthMenuCommand + " " + playerFourthtSkill);
+                Console.WriteLine();
+                Console.WriteLine("Введите любую другую команду для ознакомления со скилами");
+                menuChoice = Console.ReadLine();
+                Console.WriteLine();
+                //проведение атак
+                if (menuChoice==firstMenuCommand)
+                {
+                    Console.WriteLine("Игрок наносит " + (playerFirstSkillDamage * isInvisibleMultiplier * isFrenzyMultiplier) + " урона");
+                    bossHealth -= playerFirstSkillDamage * isInvisibleMultiplier * isFrenzyMultiplier;
+                }
+                else if (menuChoice == secondMenuCommand)
+                {
+                    if (isBleeding == true)
+                    {
+                        Console.WriteLine("Игрок наносит " + (playerFirstSkillDamage * isInvisibleMultiplier * isFrenzyMultiplier) + " урона");
+                        Console.WriteLine("Кровотечение обновлено");
+                        bossHealth -= playerSecondSkillDamage * isInvisibleMultiplier*isFrenzyMultiplier;
+                        bleedingCount = bleedingDuration;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Игрок наносит " + (playerFirstSkillDamage * isInvisibleMultiplier * isFrenzyMultiplier) + " урона");
+                        Console.WriteLine("У босса кровотечение");
+                        isBleeding = true;
+                        bossHealth -= playerSecondSkillDamage * isInvisibleMultiplier * isFrenzyMultiplier;
+                        bleedingCount = bleedingDuration;
+                    }
+                }
+                else if (menuChoice == thirdMenuCommand)
+                {
+                    if (invisibilityCooldowncount > 0)
+                    {
+                        Console.WriteLine("Игрок пытается произвести " + playerThirdSkill+ " , но способность не срабатывает");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Игрок совершает " + playerThirdSkill);
+                        isInvisible = true;
+                        invisibilityCount = invisibilityDuration;
+                        invisibilityCooldowncount = invisibilityCooldown;
+                        isInvisibleMultiplier = invisibilityMultiplier;
+                        playerHealth += thirdSkillHealing;
+                    }
+                }
+                else if (menuChoice == fourthMenuCommand)
+                {
+                    if (agressionLevel < frenzyAgressionLevelNeeded)
+                    {
+                        Console.WriteLine("Недостаточный уровень ярости");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Игрок в неистовстве");
+                        isFrenzy = true;
+                        frenzyCount = frenzyDuration;
+                        isFrenzyMultiplier = frenzyMultplier;
+                        agressionLevel -= frenzyAgressionLevelNeeded;
+                    }      
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine(firstSkillDescribtion);
+                    Console.WriteLine();
+                    Console.WriteLine(secondSkillDescribtion);
+                    Console.WriteLine();
+                    Console.WriteLine(thirdSkillDescribtion);
+                    Console.WriteLine();
+                    Console.WriteLine(fourthSkillDescribtion);
+                    Console.ReadKey();
+                    Console.Clear();
+                    continue;
+                }
+
+                if (isInvisible == true)
+                {
+                    Console.WriteLine("Босс не видит цель и промахивается");
+                }
+                else
+                {
+                    bossAttack = random.Next(bossAtteckMin, bossAttackMax);
+                    playerHealth -= bossAttack;
+                    Console.WriteLine("Босс наносит " + bossAttack + " единиц урона");
+                }
+
+                if (isBleeding == true)
+                {
+                    bossHealth -= bleedingDamage;
+                    Console.WriteLine();
+                    Console.WriteLine("Босс получает " + bleedingDamage + " единиц урона от кровотечения");
+                }
+                
+                bleedingCount--;
+                
+                if (bleedingCount == endOfCounts)
+                {
+                    isBleeding = false;
+                }
+                
+                invisibilityCount--;
+
+                if (invisibilityCount == endOfCounts)
+                {
+                    isInvisible = false;
+                    isInvisibleMultiplier = standartMultiplier;
+                }
+
+                invisibilityCooldowncount--;
+                frenzyCount--;
+
+                if (frenzyCount == endOfCounts)
+                {
+                    isFrenzy = false;
+                    isFrenzyMultiplier = standartMultiplier;
+                }
+
+                agressionLevel++;
+
+                if (agressionLevel > frenzyAgressionLevelNeeded)
+                {
+                    agressionLevel = frenzyAgressionLevelNeeded;
+                }
+
+                round++;
+                Console.ReadKey();
+                Console.Clear();
+
+                if (playerHealth <= noHealth || bossHealth <= noHealth)
+                {
+                    isFighting = false;
+                }
+            }
+
+            if (playerHealth <= noHealth && bossHealth <= noHealth)
+            {
+                Console.WriteLine("Ничья");
+            }
+            else if (playerHealth <= noHealth)
+            {
+                Console.WriteLine("Босс победил");
+            }
+            else
+            {
+                Console.WriteLine($"Победа игрока");
+            }
+
+            Console.ReadKey();
+        }
+    }
+}
