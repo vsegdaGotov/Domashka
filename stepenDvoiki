@@ -16,7 +16,7 @@ namespace Степень_двойки
             int number = random.Next(limitMin, limitMax);
             int multipliable = 2;
             int countStart = multipliable;
-            int minDegreeOfMultipliable = 1;
+            int degreeOfMultipliable = 1;
             Console.WriteLine(number);
 
             if (number < multipliable)
@@ -27,11 +27,11 @@ namespace Степень_двойки
             {
                 while (countStart <= number)
                 {
-                    minDegreeOfMultipliable++;
+                    degreeOfMultipliable++;
                     countStart *= multipliable;
                 }
 
-                Console.WriteLine($"Ответ: {multipliable} в степени {minDegreeOfMultipliable}");
+                Console.WriteLine($"Ответ: {multipliable} в степени {degreeOfMultipliable}");
             }
             Console.ReadKey();
         }
