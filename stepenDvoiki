@@ -14,24 +14,24 @@ namespace Степень_двойки
             int limitMin = -999999999;
             int limitMax = 999999999;
             int number = random.Next(limitMin, limitMax);
-            int countStart = 2;
-            int answer = 1;
-            int multiplier = 2;
+            int multipliable = 2;
+            int countStart = multipliable;
+            int minDegreeOfMultipliable = 1;
             Console.WriteLine(number);
 
-            if (number < answer)
+            if (number < multipliable)
             {
-                Console.WriteLine($"Ответ: {multiplier} в степени 0");
+                Console.WriteLine($"Ответ: {multipliable} в степени 0");
             }
             else
             {
                 while (countStart <= number)
                 {
-                    answer++;
-                    countStart *= multiplier;
+                    minDegreeOfMultipliable++;
+                    countStart *= multipliable;
                 }
 
-                Console.WriteLine($"Ответ: {multiplier} в степени {answer}");
+                Console.WriteLine($"Ответ: {multipliable} в степени {minDegreeOfMultipliable}");
             }
             Console.ReadKey();
         }
